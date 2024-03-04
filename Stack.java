@@ -17,15 +17,13 @@ public void push(T value) {
     length++;
 }
 
-// POP. Obtiene el siguiente valor en la pila y regresa un espacio.
 public T pop() {
-    if (firstNode != null) {
+    if (firstNode != null) { // Si existe algún nodo creado
         T value = firstNode.getvalue();
         firstNode = firstNode.getNext();
-        length--;
         return value;
     }
-    throw new RuntimeException("Stack underflow");
+    return null; // Si aún no existe nodo creado previamente.
 }
 
 public boolean empty(){

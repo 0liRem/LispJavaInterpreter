@@ -8,8 +8,8 @@
 ///             
 //   Programadores: Olivier Viau 23544
 //                  Fabian Morales 23267
-//                  Renato
-//                  Belen
+//                  Renato Rojas 23813
+//                  Belen Monterroso 231497
 //
 //   Lenguaje: Java
 //
@@ -21,8 +21,8 @@
 //
 
 public class main {
-    public static void main(String[] args) {
-        Vistas vista=new Vistas();
+    public static void main(String[] args) throws Exception {
+        Vista vista=new Vista();
         vista.menu();
     }
 }
