@@ -18,6 +18,7 @@
 //   Historia de Modificaciones:
 //
 //            [000] 28/02/2024 Programa nuevo
+//            [001] 29/02/2024 Validador de paréntesis
 //
 
 public class main {
