@@ -25,19 +25,17 @@ public class Controlador {
             File archivo = new File(arch);
             FileReader fr = new FileReader(archivo);
             br = new BufferedReader(fr);
-            
+            System.out.println("Se ha abierto con exito");
             // Leer la expresión prefix del archivo
-            String linea = br.readLine();
-            if (linea != null) {
+            
+            while ((linea=br.readLine()) != null) {
                 // Se crea una instancia de PrefixEvaluador
                 PrefixEvaluador pre = new PrefixEvaluador();
                 // Evaluar la expresión prefix
                 Double resultado = pre.EvaluationPrefix(linea.trim());
                 // Mostrar el resultado
                 System.out.println("El resultado es: " + resultado);
-            } else {
-                System.out.println("El archivo está vacío.");
-            }
+            } 
         } catch (Exception e) {
             throw e;
         } finally {
