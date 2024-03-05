@@ -1,13 +1,13 @@
 import java.util.Stack;
 
 public class PrefixEvaluador {
-    
+
     public Double EvaluationPrefix(String data) {
         Stack<Double> stack = new Stack<>();
-    
+
         // Dividir la cadena en tokens
         String[] tokens = data.trim().split("\\s*(\\(|\\)|\\s)\\s*");
-        for(int i = tokens.length - 1; i >= 0; i--) {
+        for (int i = tokens.length - 1; i >= 0; i--) {
             String token = tokens[i];
             if (isOperator(token)) {
                 // Realizar la operación y agregar el resultado a la pila
@@ -27,18 +27,19 @@ public class PrefixEvaluador {
         }
 
         if (stack.size() != 1) {
-            throw new RuntimeException("Error de evaluación: la pila no contiene un solo valor al final de la evaluación");
+            throw new RuntimeException(
+                    "\nError de evaluación: la pila no contiene un solo valor al final de la evaluación");
         }
 
         return stack.pop();
     }
-    
+
     private boolean isOperator(String token) {
         return token.equals("+") || token.equals("-") || token.equals("*") || token.equals("/");
     }
-    
+
     private Double performOperation(String operator, Double operand1, Double operand2) {
-        switch(operator) {
+        switch (operator) {
             case "+":
                 return operand1 + operand2;
             case "-":
@@ -47,11 +48,11 @@ public class PrefixEvaluador {
                 return operand1 * operand2;
             case "/":
                 if (operand2 == 0) {
-                    throw new ArithmeticException("Error de evaluación: División por cero");
+                    throw new ArithmeticException("\nError de evaluación: División por cero");
                 }
                 return operand2 / operand1;
             default:
-                throw new IllegalArgumentException("Operador no válido: " + operator);
+                throw new IllegalArgumentException("\nOperador no válido: " + operator);
         }
     }
 }
