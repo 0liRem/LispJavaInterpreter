@@ -12,10 +12,12 @@ public class Controlador {
     private Map<String, Defunc> funcion = new HashMap<>();
     FileReader fr = null;
     BufferedReader br = null;
-    String linea = null;
+    public static String linea = null;
     // Operations operador = new Operations();
     Stack<Double> pila = new Stack<>();
 
+    Diccionario diccionario = new Diccionario();
+    
     double resultado, numero;
 
     /**
@@ -44,7 +46,9 @@ public class Controlador {
                     definidor(linea);
                     System.out.println("Funcion definida");
                 }
-
+                if(linea.startsWith("quote")){
+                    diccionario.getFunciones("QUOTE");
+                }
                 else if (linea.startsWith("arch")){
                     Double resultado = operaciones.EvaluationPrefix(linea.trim());
                     // Mostrar el resultado
