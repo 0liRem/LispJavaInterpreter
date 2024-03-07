@@ -48,7 +48,7 @@ public class Controlador {
                 }
                 if(linea.startsWith("quote")){
                     diccionario.getFunciones("QUOTE");
-                }
+                }   //Acá agregar el resto de funciones reservadas
                 else if (linea.startsWith("arch")){
                     Double resultado = operaciones.EvaluationPrefix(linea.trim());
                     // Mostrar el resultado
