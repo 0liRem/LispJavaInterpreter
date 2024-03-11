@@ -42,6 +42,7 @@ public class FuncionList implements ReservedFunciones {
     private List<String> analizeData(String argumentos) {
         List<String> lista = new ArrayList<>();
         StringBuilder element = new StringBuilder();
+        boolean esPalabraEspecial = false;
 
         boolean entreComillas = false; 
         boolean elEscape = false; // para los caracteres especiales como \, indica que no debería contarse como las comullas o el espacio en blanco
@@ -66,6 +67,20 @@ public class FuncionList implements ReservedFunciones {
                     element.setLength(0);
                 }
             } 
+
+            
+            if (!entreComillas && (espaciador == '(' || espaciador == ')') && !esPalabraEspecial) {
+                esPalabraEspecial = true;
+                continue;
+            }
+
+            if (espaciador == ' ' && !entreComillas && !esPalabraEspecial) {
+                if (element.length() > 0) {
+                    lista.add(element.toString());
+                    element.setLength(0);
+                }
+            } 
+            
             else{
                 element.append(espaciador);
                 // se agrega el símbolo al elemento  actua
@@ -78,12 +93,15 @@ public class FuncionList implements ReservedFunciones {
         if(element.length() > 0){
             lista.add(element.toString());
         }
+        
 
         // se elimina el list
         if(!lista.isEmpty() &&  lista.get(0).equals("list")){
             lista.remove(0);
         }
 
+        lista.remove("quote");
         return lista;
     }
+    
 }
