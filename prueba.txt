@@ -1,1 +1,4 @@
 QUOTE(/ (+ (* 3 2) 3) 3)
+(atom 123)
+(atom j k j k)
+(atom )
