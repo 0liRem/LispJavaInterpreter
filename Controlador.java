@@ -69,10 +69,15 @@ public class Controlador {
                         dato=linea;
                         }
                     
+                    // EVALUAR QUOTE
                     if(linea.startsWith("quote")){
                         diccionario.getFunciones("QUOTE");
                     }
-                    
+                    // EVALUAR ATOM
+                    if(linea.startsWith("(atom")){
+                        diccionario.getFunciones("ATOM");
+                    }
+                
                     else if (linea.startsWith("arch")){
                         Double resultado = operaciones.EvaluationPrefix(linea.trim());
                         // Mostrar el resultado
@@ -113,4 +118,6 @@ public class Controlador {
         int fin = espacio != -1 ? espacio : nombre.length();
         return nombre.substring(1, fin);
     }
+    
+    
 }
