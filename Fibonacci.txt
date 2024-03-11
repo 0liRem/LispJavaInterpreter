@@ -11,4 +11,4 @@
 ))
 
 ; escribir el factorial del número
-(format t "Factorial: ~a" (factorial 4))
+(factorial 4)

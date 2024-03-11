@@ -6,18 +6,18 @@ import java.util.Map;
 public class Contexto {
         private Map<String, String> variables = new HashMap<>();
 
-    public void setVariable(String name, String value) {
-        variables.put(name, value);
+    public void setVariable(String nombre, String valor) {
+        variables.put(nombre, valor);
     }
     
     public String getVariable(String name) {
-        return variables.getOrDefault(name, "NIL"); // Retorna "NIL" si la variable no existe
+        return variables.getOrDefault(name, "VariableInexistente");
     }    
 
-    // Método para clonar el contexto actual, útil para llamadas a funciones
+    // Método para clonar el contexto actual, el cual se utilizara para llamar funciones
     public Contexto clone() {
-        Contexto newContext = new Contexto();
-        newContext.variables.putAll(this.variables);
-        return newContext;
+        Contexto NuevoContexto = new Contexto();
+        NuevoContexto.variables.putAll(this.variables);
+        return NuevoContexto;
     }
 }
