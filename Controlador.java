@@ -79,6 +79,10 @@ public class Controlador {
                     if(linea.startsWith("(atom")){
                         diccionario.getFunciones("ATOM");
                     }
+                    // EVALUAR LIST
+                    if(linea.startsWith("(list")){
+                        diccionario.getFunciones("LIST");
+                    }
                 
                     else if (linea.startsWith("arch")){
                         Double resultado = operaciones.EvaluationPrefix(linea.trim());
@@ -115,11 +119,12 @@ public class Controlador {
         
 
     }
-    private String obtenerNombre(String nombre){
+    private String obtenerNombre(String nombre) {
         int espacio = nombre.indexOf(' ');
-        int fin = espacio != -1 ? espacio : nombre.length();
-        return nombre.substring(1, fin);
+        return espacio != -1 ? nombre.substring(1, espacio) : "";
     }
+    
+        
     
     
 }
