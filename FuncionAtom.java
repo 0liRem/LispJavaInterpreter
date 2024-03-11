@@ -6,14 +6,14 @@ public class FuncionAtom implements ReservedFunciones {
             System.out.println("La línea leída está vacía");
         } 
         else {
-            String argumento = obtenerArgumento(Controlador.linea);
-            String esAtomo = esAtomo(argumento);
-            System.out.println(esAtomo);
+            String argumento = ontainArgument(Controlador.linea);
+            String isAtom = isAtom(argumento);
+            System.out.println(isAtom);
         }
     }
 
     
-    private String obtenerArgumento(String linea) {
+    private String ontainArgument(String linea) {
         // se busca el paréntisis de apertura
         int inicio = linea.indexOf('(');
         if (inicio != -1) {
@@ -36,7 +36,7 @@ public class FuncionAtom implements ReservedFunciones {
     
 
     
-    private String esAtomo(String cadena) {
+    private String isAtom(String cadena) {
 
         // se muestra error si está sin argumento
         if (cadena.trim().isEmpty()){
