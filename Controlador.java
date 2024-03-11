@@ -12,10 +12,11 @@ public class Controlador {
     private Map<String, Defunc> funcion = new HashMap<>();
     FileReader fr = null;
     BufferedReader br = null;
-    String linea = null;
+    public static String linea = null;
     // Operations operador = new Operations();
     Stack<Double> pila = new Stack<>();
 
+    Diccionario diccionario = new Diccionario();
     double resultado, numero;
 
     /**
@@ -58,7 +59,7 @@ public class Controlador {
                     if(linea.startsWith(";")){
                         //es un comentario así que lo devuelve
                         System.out.println("Comentario: "+linea);
-                    }
+                        }
                     if(linea.startsWith("(defun")){
                         //definidor(linea);
                         //System.out.println("Funcion definida");
@@ -66,13 +67,18 @@ public class Controlador {
                         oppar-=linea.chars().filter(ch->ch==')').count();
                         indefun=true;
                         dato=linea;
+                        }
+                    
+                    if(linea.startsWith("quote")){
+                        diccionario.getFunciones("QUOTE");
                     }
-
+                    
                     else if (linea.startsWith("arch")){
                         Double resultado = operaciones.EvaluationPrefix(linea.trim());
                         // Mostrar el resultado
                         System.out.println("\nEl resultado es: " + resultado);
-                }
+                        }
+                    
                     String nombFuncion=obtenerNombre(linea);
                     if (funcion.containsKey(nombFuncion)){
                         //Se llamara un validador de funcion para verificar que todo es legal, luego ira linea por linea del cuerpo de la funcion ejecutando las instrucciones
