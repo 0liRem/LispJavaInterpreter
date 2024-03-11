@@ -29,8 +29,10 @@ public class Controlador {
         BufferedReader br = null;
         String cuerpo="";
         String dato="";
+        File archivo = new File(arch);
+
+         // Verificar si el archivo existe
         try {
-            File archivo = new File(arch);
             FileReader fr = new FileReader(archivo);
             br = new BufferedReader(fr);
             System.out.println("\nSe ha abierto con exito el archivo.");
