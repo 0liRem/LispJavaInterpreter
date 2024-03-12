@@ -91,7 +91,7 @@ public class Controlador {
                         diccionario.getFunciones("EQUAL");
                     }
                 
-                    else if (linea.startsWith("arch")){
+                    else{
                         Double resultado = operaciones.EvaluationPrefix(linea.trim());
                         // Mostrar el resultado
                         System.out.println("\nEl resultado es: " + resultado);
@@ -134,7 +134,49 @@ public class Controlador {
 
     //Menú de procesos utilizado dentro de la función, para poder realizar los procesos recursivos sin el problema de estar en un archivo
     public String evaluador(String expression, Contexto context) throws Exception{
-        System.out.println("a");
+        System.out.println(expression);
+        String[] lineas=expression.split("\n");
+        for (String linea : lineas){
+            linea=linea.toLowerCase();
+            linea=linea.trim();
+            System.out.println(linea);
+            if(linea.startsWith(";")){
+                //es un comentario así que lo devuelve
+                System.out.println("Comentario: "+linea);
+                }
+            
+            // EVALUAR QUOTE
+            if(linea.startsWith("quote")){
+                diccionario.getFunciones("QUOTE");
+            }
+            // EVALUAR ATOM
+            if(linea.startsWith("(atom")){
+                diccionario.getFunciones("ATOM");
+            }
+            // EVALUAR LIST
+            if(linea.startsWith("(list")){
+                diccionario.getFunciones("LIST");
+            }
+            // EVALUAR EQUAL
+            if(linea.startsWith("(equal")){
+                diccionario.getFunciones("EQUAL");
+            }
+            if(linea.startsWith("(cond")){
+
+            }
+            else{
+                Double resultado = operaciones.EvaluationPrefix(linea.trim());
+                // Mostrar el resultado
+                System.out.println("\nEl resultado es: " + resultado);
+                }
+            
+            String nombFuncion=obtenerNombre(linea);
+            if (mapfunc.containsKey(nombFuncion)){
+                return evaluarfuncion(expression, context);
+                //Se llamara un validador de funcion para verificar que todo es legal, luego ira linea por linea del cuerpo de la funcion ejecutando las instrucciones
+                //para lo que hay que adaptar la clase archivo para que se puede llamar, para esto recomiendo que se valide si se esta leyendo la instruccion 
+            }
+        }
         return("a");
     }
 
@@ -148,12 +190,11 @@ public class Controlador {
         List<String> parametro = pfunc.getparametros(); //obtiene los parametros de la funcion 
 
         if (argumento.size() != parametro.size()) { //valida que se haya mandado la misma cantidad de argumentos que de variables
-            throw new IllegalArgumentException("Error, cantidad de argumentos y parametros no conciden");
+            throw new IllegalArgumentException(" Error, cantidad de argumentos y parametros no conciden");
         }
 
         for (int i = 0; i < argumento.size(); i++) {//va a evaluar cada linea del cuerpo yendo linea por linea teniendo como parametro el contexto actual, para las funciones recursivas
             String valorargumento = evaluador(argumento.get(i), contexto);//va a buscar el valor del argumento mandado
-            System.out.println(argumento.get(i));
             funcontexto.setVariable(parametro.get(i), valorargumento); //va a establecer el valor del argumento como el del parametro
         }
         //va a realizar las lineas de texto dadas en el evaluador

@@ -4,11 +4,13 @@
 (defun factorial (n)
 
 ; cálculo para el factorial
-;si n es 1 devuelve 1, caso contrario multiplica n por el factorial n - 1
-  (if (= n 1)
-       1
-      (* n (factorial (- n 1)))
+;si n es 1 o 0 devuelve 1, caso contrario multiplica n por el factorial de n - 1
+  (cond ((= n 0) 1) ; si n es 0 el factorial es 1
+	((= n 1) 1) ; si n es 1 el factorial es 1
+	(* n (factorial (- n 1)))
+	; n multiplicado con el factorial de  n - 1
 ))
 
 ; escribir el factorial del número
 (factorial 4)
+
