@@ -13,7 +13,7 @@ public class FuncionAtom implements ReservedFunciones {
     }
 
     
-    private String ontainArgument(String linea) {
+    public String ontainArgument(String linea) {
         // se busca el paréntisis de apertura
         int inicio = linea.indexOf('(');
         if (inicio != -1) {
@@ -36,7 +36,7 @@ public class FuncionAtom implements ReservedFunciones {
     
 
     
-    private String isAtom(String cadena) {
+    public String isAtom(String cadena) {
 
         // se muestra error si está sin argumento
         if (cadena.trim().isEmpty()){

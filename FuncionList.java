@@ -25,7 +25,7 @@ public class FuncionList implements ReservedFunciones {
     }
 
     // se sacan los argumentos
-    private String obtainArgumentos(String line){
+    public String obtainArgumentos(String line){
         int inicio = line.indexOf('(');
 
         if (inicio != -1){
@@ -39,7 +39,7 @@ public class FuncionList implements ReservedFunciones {
     }
 
     // separar los elementos según su caso
-    private List<String> analizeData(String argumentos) {
+    public List<String> analizeData(String argumentos) {
         List<String> lista = new ArrayList<>();
         StringBuilder element = new StringBuilder();
         boolean esPalabraEspecial = false;
