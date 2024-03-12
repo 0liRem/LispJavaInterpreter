@@ -46,10 +46,50 @@ Diccionario diccionario = new Diccionario();
     funcionQuote.execute();
     
     System.setOut(originalOut);
-    String entrada = outputStream.toString().trim(); // Obtén la salida capturada y elimina los espacios en blanco iniciales y finales
+    String entrada = outputStream.toString().trim(); // Se obtiene la salida recién capturada
     
-    assertEquals(assertQuote, entrada); // Utiliza assertEquals para comparar las cadenas
+    assertEquals(assertQuote, entrada);
 }
 
+@Test
+    public void comprobaEqualResultadoCorrecto() {
+    FuncionEqual funcionEqual = new FuncionEqual();
+    String assertEqual = "true";
+    Controlador.linea = "(equal z z)";
+    if(Controlador.linea.startsWith("(equal")){
+      diccionario.getFunciones("EQUAL");
+  }
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    PrintStream customOut = new PrintStream(outputStream);
+    PrintStream originalOut = System.out;
+    System.setOut(customOut);
+    
+    funcionEqual.execute();
+    
+    System.setOut(originalOut);
+    String entrada = outputStream.toString().trim(); // Se obtiene la salida recién capturada
+    
+    assertEquals(assertEqual, entrada); 
+}
+@Test
+    public void comprobaEqualResultadoIncorrecto() {    //Se espera un resultado incorrecto, pues se darán como parámetros valores no iguales.
+    FuncionEqual funcionEqual = new FuncionEqual();
+    String assertEqual = "true";
+    Controlador.linea = "(equal 7 10)";
+    if(Controlador.linea.startsWith("(equal")){
+      diccionario.getFunciones("EQUAL");
+  }
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    PrintStream customOut = new PrintStream(outputStream);
+    PrintStream originalOut = System.out;
+    System.setOut(customOut);
+    
+    funcionEqual.execute();
+    
+    System.setOut(originalOut);
+    String entrada = outputStream.toString().trim(); // Se obtiene la salida recién capturada
+    
+    assertEquals(assertEqual, entrada);   //Se obtiene el error esperado. 
+}
 }
 
