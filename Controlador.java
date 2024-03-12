@@ -86,6 +86,10 @@ public class Controlador {
                     if(linea.startsWith("(list")){
                         diccionario.getFunciones("LIST");
                     }
+                    // EVALUAR EQUAL
+                    if(linea.startsWith("(equal")){
+                        diccionario.getFunciones("EQUAL");
+                    }
                 
                     else if (linea.startsWith("arch")){
                         Double resultado = operaciones.EvaluationPrefix(linea.trim());
