@@ -6,9 +6,14 @@ public class FuncionQuote implements ReservedFunciones{
             System.out.println("La linea leída esta vacía");
         }
         else{
-            System.out.println(Controlador.linea);
-        }
-        
+            int inicio = Controlador.linea.indexOf('(');
+            if (inicio != -1){
+                int last = Controlador.linea.lastIndexOf(')');
+            if(last != -1){
+                String algo = Controlador.linea.substring(inicio + 1, last);
+                System.out.println(algo);   
+            }
+        }   
+        }   
     }
-    
 }
