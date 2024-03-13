@@ -1,12 +1,7 @@
 import java.util.Stack;
 
 public class FuncionSetQ implements ReservedFunciones {
-    private Contexto contexto;
-
-    // se recibe el contexto como parámetro
-    public FuncionSetQ(Contexto contexto){
-        this.contexto = contexto;
-    }
+   
 
     /*
      * Clase que representa la función setq de lenguaje.
@@ -20,14 +15,14 @@ public class FuncionSetQ implements ReservedFunciones {
         if (partes.length == 2) {
             // nomas pa ver si jala
             System.out.println("Contexto antes de setq:");
-            System.out.println(contexto);
+            //System.out.println(contexto);
 
 
             // poner variable en contexto 
-            contexto.setVariable(partes[0], partes[1]);
+            //contexto.setVariable(partes[0], partes[1]);
 
             System.out.println("Contexto después de setq:");
-            System.out.println(contexto);
+            //System.out.println(contexto);
         } 
         else{
             throw new IllegalArgumentException("Error: Falta el valor de la variable.");

@@ -13,6 +13,7 @@ public class Diccionario {
     FuncionMayorQue funcionMayorQue = new FuncionMayorQue();
     FuncionCaracter funcionCaracter = new FuncionCaracter();
     FuncionFormat funcionFormat = new FuncionFormat();
+    FuncionCond funcionCond = new FuncionCond();
 
     public Diccionario() {        
 
@@ -26,6 +27,7 @@ public class Diccionario {
         reservedFunciones.put("CAR", ()-> funcionCaracter.execute());
         reservedFunciones.put("format", ()-> funcionFormat.execute());
         reservedFunciones.put("QUOTE", ()-> funcionQuote.execute());
+        reservedFunciones.put("COND", ()-> funcionCond.execute());
 
     }
 
