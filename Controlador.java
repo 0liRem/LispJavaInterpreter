@@ -75,7 +75,7 @@ public class Controlador {
                         }
                     
                     // EVALUAR QUOTE
-                    if(linea.startsWith("quote")){
+                    if(linea.startsWith("(quote")){
                         diccionario.getFunciones("QUOTE");
                     }
                     // EVALUAR ATOM
