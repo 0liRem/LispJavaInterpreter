@@ -4,11 +4,14 @@ import java.util.Map;
 public class Diccionario {
     private Map<String, Runnable> reservedFunciones = new HashMap<>();
 
+    Contexto contexto = new Contexto();
+
+
     FuncionAtom funcionAtom = new FuncionAtom();
     FuncionQuote funcionQuote = new FuncionQuote();
     FuncionList funcionList = new FuncionList();
     FuncionEqual funcionEqual = new FuncionEqual();
-    FuncionSetQ funcionSetQ = new FuncionSetQ();
+    FuncionSetQ funcionSetQ = new FuncionSetQ(contexto);
     FuncionMenorQue funcionMenorQue = new FuncionMenorQue();
     FuncionMayorQue funcionMayorQue = new FuncionMayorQue();
     FuncionCaracter funcionCaracter = new FuncionCaracter();
