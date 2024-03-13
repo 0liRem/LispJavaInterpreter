@@ -20,4 +20,24 @@ public class Contexto {
         NuevoContexto.variables.putAll(this.variables);
         return NuevoContexto;
     }
+
+  
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Contexto {");
+        for(Map.Entry<String, String> entry : variables.entrySet()){
+            sb.append(entry.getKey()).append(" = ").append(entry.getValue()).append(", ");
+        }
+     
+        if (!variables.isEmpty()) {
+            sb.delete(sb.length() - 2, sb.length());
+        }
+        sb.append("}");
+        return sb.toString();
+
+        
+    }
+    
+    
 }
