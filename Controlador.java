@@ -90,6 +90,10 @@ public class Controlador {
                     if(linea.startsWith("(equal")){
                         diccionario.getFunciones("EQUAL");
                     }
+                    // EVALUAR SETQ
+                    if(linea.startsWith("(setq")){
+                        diccionario.getFunciones("SETQ");
+                    }
                     if(linea.startsWith("(cond")){
                         diccionario.getFunciones("COND");
                     }
