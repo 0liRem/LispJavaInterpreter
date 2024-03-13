@@ -1,7 +1,10 @@
-import java.util.Stack;
-
 public class FuncionSetQ implements ReservedFunciones {
-   
+    private Contexto contexto;
+
+    // se recibe el contexto como parámetro
+    public FuncionSetQ(Contexto contexto){
+        this.contexto = contexto;
+    }
 
     /*
      * Clase que representa la función setq de lenguaje.
@@ -11,19 +14,21 @@ public class FuncionSetQ implements ReservedFunciones {
         // datos de la lista
         String datos = getArgumentos(Controlador.linea);
         // separar el nombre de la variable y el valor de esta
-        String[] partes = datos.split("\\s+", 2);
-        if (partes.length == 2) {
-            // nomas pa ver si jala
-            System.out.println("Contexto antes de setq:");
-            //System.out.println(contexto);
+        String[] partes = datos.split("\\s+", 3);
+        if (partes.length == 3 && partes[0].equals("setq")) {
+
+            String nombreVariable = partes[1];
+            String valorVariable = partes[2];
+            contexto.setVariable(nombreVariable, valorVariable);
+
+
+            //String valorAsignado = contexto.getVariable(nombreVariable);
+            //System.out.println("El valor de " + nombreVariable + " es: " + valorAsignado);
 
 
             // poner variable en contexto 
-            //contexto.setVariable(partes[0], partes[1]);
-
-            System.out.println("Contexto después de setq:");
-            //System.out.println(contexto);
-        } 
+            contexto.setVariable(partes[0], partes[1]);
+        }
         else{
             throw new IllegalArgumentException("Error: Falta el valor de la variable.");
         }
@@ -41,4 +46,6 @@ public class FuncionSetQ implements ReservedFunciones {
         }
         return "";
     }
+
+    
 }
