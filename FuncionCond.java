@@ -1,77 +1,54 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class FuncionCond implements ReservedFunciones {
+    
     /*
      * Clase que representa la función cond de lenguaje.
      */
     @Override
     public void execute() {
+
         System.out.println(Controlador.linea);
-        boolean result = evaluateLispExpression(Controlador.linea);
-        //String argumentos = obtainArgumentos(Controlador.linea);
-        
-    }
 
-    public static boolean evaluateLispExpression(String expression) {
-        
-        Stack<String> stack = new Stack<>();
-     
-        String[] tokens = expression.split(" ");
-        
+      
 
-        for (int i = tokens.length - 1; i >= 0; i--) {
-            stack.push(tokens[i]);
-            System.out.println(tokens[i]);
-        }
-        System.out.println(stack);
-
-        return evaluateExpression(stack);
-
-    }
-
-    private static boolean evaluateExpression(Stack<String> stack) {
-        System.out.println("a");
-        if (stack.empty()) {
-            throw new IllegalArgumentException("Expresión inválida");
-        }
-        System.out.println("b");
-
-        String token = stack.pop();
-        System.out.println(token);
-
-        if (token.trim().substring(1).equalsIgnoreCase("cond")) {
-            System.out.println(token);
-            return evaluateCondExpression(stack);
-        } else if (token.equals("(")) {
-            System.out.println(token);
-            return evaluateExpression(stack);
+        String lineaCOND = Controlador.linea;  
+        if (funcionCOND(lineaCOND)){
+            System.out.println("El resultado es Verdadero");
         } else {
-            System.out.println("WTF");
-            throw new IllegalArgumentException("Operador desconocido: " + token);
+            System.out.println("El resultado es Falso");
         }
         
     }
 
-    private static boolean evaluateCondExpression(Stack<String> stack) {
-        while (!stack.empty()) {
-            String conditionToken = stack.pop();
-            if (conditionToken.equals("(")) {
-                return evaluateExpression(stack);
-            } else {
-                Predicate<Boolean> condition = result -> result;
-                boolean result = condition.test(Boolean.parseBoolean(conditionToken));
+    private boolean funcionCOND(String pSentencia) {
+  
+        
+        // Separando al linea de sentencia en sus partes
+        String[] v_partesSentencia = pSentencia.replaceAll("\\(|\\)", "").split("\\s+");        
 
-                if (result) {
-                    System.out.println("true peteeeee");
-                    return true;
-                    
-                }
+        // el operador actual de una condicion está en la posicion 1
+        // y los operandos del operador binario estan en la posicion 2 y 3 del array
+        if (v_partesSentencia[1].equals("equal")){
+            if (Double.parseDouble(v_partesSentencia[2]) == Double.parseDouble(v_partesSentencia[3])){
+                boolean v_regresa = true;
+                return v_regresa;
+            } else{
+                boolean v_regresa = false;
+                return v_regresa;
             }
-        }
+                
 
-        throw new IllegalArgumentException("COND mal formado");
+            
+        } else {
+            boolean v_regresa = v_partesSentencia[1].equals(">") ? Double.parseDouble(v_partesSentencia[2]) > Double.parseDouble(v_partesSentencia[3]) : Double.parseDouble(v_partesSentencia[2]) < Double.parseDouble(v_partesSentencia[3]);
+            return v_regresa;
     }
-    
+
+        
+    } 
+
 }
