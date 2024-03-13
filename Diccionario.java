@@ -4,18 +4,16 @@ import java.util.Map;
 public class Diccionario {
     private Map<String, Runnable> reservedFunciones = new HashMap<>();
 
-    Contexto contexto = new Contexto();
-
-
     FuncionAtom funcionAtom = new FuncionAtom();
     FuncionQuote funcionQuote = new FuncionQuote();
     FuncionList funcionList = new FuncionList();
     FuncionEqual funcionEqual = new FuncionEqual();
-    FuncionSetQ funcionSetQ = new FuncionSetQ(contexto);
+    FuncionSetQ funcionSetQ = new FuncionSetQ();
     FuncionMenorQue funcionMenorQue = new FuncionMenorQue();
     FuncionMayorQue funcionMayorQue = new FuncionMayorQue();
     FuncionCaracter funcionCaracter = new FuncionCaracter();
     FuncionFormat funcionFormat = new FuncionFormat();
+    FuncionCond funcionCond = new FuncionCond();
 
     public Diccionario() {        
 
@@ -29,6 +27,7 @@ public class Diccionario {
         reservedFunciones.put("CAR", ()-> funcionCaracter.execute());
         reservedFunciones.put("format", ()-> funcionFormat.execute());
         reservedFunciones.put("QUOTE", ()-> funcionQuote.execute());
+        reservedFunciones.put("COND", ()-> funcionCond.execute());
 
     }
 

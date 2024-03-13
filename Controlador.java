@@ -90,12 +90,11 @@ public class Controlador {
                     if(linea.startsWith("(equal")){
                         diccionario.getFunciones("EQUAL");
                     }
-                    // EVALUAR SETQ
-                    if(linea.startsWith("(setq")){
-                        diccionario.getFunciones("SETQ");
+                    if(linea.startsWith("(cond")){
+                        diccionario.getFunciones("COND");
                     }
                 
-                    if(linea.startsWith("arch")){
+                    else if(linea.startsWith("arch")){
                         Double resultado = operaciones.EvaluationPrefix(linea.trim());
                         // Mostrar el resultado
                         System.out.println("\nEl resultado es: " + resultado);
